@@ -1,17 +1,17 @@
 package main
 
-  import (
-    "net/http"
-    "time"
+import (
+	"net/http"
+	"time"
 
-    "github.com/flosch/pongo2"
-    "github.com/labstack/echo/v4"
-    "github.com/labstack/echo/v4/middleware"
-  )
+	"github.com/flosch/pongo2"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+)
 
-  const tmplPath = "src/template/"
+const tmplPath = "src/template/"
 
-  var e = createMux()
+var e = createMux()
 
 func main() {
 	e.GET("/", articleIndex)
@@ -25,6 +25,8 @@ func createMux() *echo.Echo {
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
 	e.Use(middleware.Gzip())
+
+	e.Static("/css","src/css")
 
 	return e
 }
