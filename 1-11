@@ -1,0 +1,27 @@
+# やったこと
+# 1 fresh のインストール
+```go
+go get -u -v github.com/pilu/fresh
+```
+をインストール
+
+# which コマンドでパスを確認
+```go
+which fresh
+```
+
+# go.mod にも追加されますが、アプリケーション自体には必要ないため go mod tidy コマンドで記載を削除
+```go
+go mod tidy
+```
+
+# 設定ファイルの作成
+fresh ではプロジェクトルート直下にある runner.conf というファイルを設定ファイルとしてデフォルトで読み込みます。まずは runner.conf を touch コマンドで作成
+```go
+touch runner.conf
+```
+
+- 動作確認
+```go
+fresh
+```
