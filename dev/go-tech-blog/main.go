@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"go-tech-blog/handler"
-  "go-tech-blog/repository"
-	
+	"go-tech-blog/repository"
+
 	_ "github.com/go-sql-driver/mysql" // Using MySQL driver
 	"github.com/jmoiron/sqlx"
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4" // <- Echo v4をimportしている
 	"github.com/labstack/echo/v4/middleware"
 )
 
@@ -21,9 +21,9 @@ func main() {
 	repository.SetDB(db)
 
 	e.GET("/", handler.ArticleIndex)
-  e.GET("/new", handler.ArticleNew)
-  e.GET("/:id", handler.ArticleShow)
-  e.GET("/:id/edit", handler.ArticleEdit)
+	e.GET("/new", handler.ArticleNew)
+	e.GET("/:id", handler.ArticleShow)
+	e.GET("/:id/edit", handler.ArticleEdit)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
@@ -53,5 +53,3 @@ func connectDB() *sqlx.DB {
 	log.Println("db connection succeeded")
 	return db
 }
-
-
