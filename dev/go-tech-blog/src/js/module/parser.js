@@ -10,4 +10,3 @@ const md = new Remarkable({
     return Prism.highlight(str, Prism.languages[lang], lang);
   }
 });
-cd
