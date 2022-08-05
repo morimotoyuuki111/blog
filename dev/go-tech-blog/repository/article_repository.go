@@ -1,8 +1,8 @@
 package repository
 
 import (
-		"database/sql"
-			"time"
+	"database/sql"
+	"time"
 
 	"go-tech-blog/model"
 )
