@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let status;
 
       // fetch API を利用してリクエストを送信します。
-      fetch(url, {
+      fetch(`/api${url}`, {
         method: method,
         headers: { 'X-CSRF-Token': csrfToken },
         body: fd
@@ -91,13 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // 作成リクエスト、および戻るボタンの遷移先のパスは "/" になります。
-    mode.url = '/';
+    // 作成リクエスト、および戻るボタンの遷移先のパスは "/articles" になります。
+    mode.url = '/articles';
   } else if (window.location.pathname.endsWith('edit')) {
     // 更新時の HTTP メソッドは PATCH を利用します。
     mode.method = 'PATCH';
-    // 更新リクエスト、および戻るボタンの遷移先のパスは "/:articleID" になります。
-    mode.url = `/${window.location.pathname.split('/')[1]}`;
+    // 更新リクエスト、および戻るボタンの遷移先のパスは "/articles/:articleID" になります。
+    mode.url = `/articles/${window.location.pathname.split('/')[2]}`;
   }
   const { method, url } = mode;
 
@@ -113,12 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
       }
     });
+
   }
 
   // プレビューを開くイベントを設定します。
   previewOpenBtn.addEventListener('click', event => {
      // form の「本文」に入力された Markdown を HTML に変換してプレビューに埋め込みます。
-     articleFormPreviewTextArea.innerHTML = md.render(articleFormBodyTextArea.value);
+    articleFormPreviewTextArea.innerHTML = md.render(articleFormBodyTextArea.value);
 
     // 入力フォームを非表示にします。
     articleFormBody.style.display = 'none';
